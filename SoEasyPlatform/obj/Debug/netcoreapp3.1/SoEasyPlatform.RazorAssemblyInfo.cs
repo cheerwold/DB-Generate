@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: Microsoft.AspNetCore.Mvc.ApplicationParts.RelatedAssemblyAttribute("SoEasyPlatform.Views")]
 [assembly: Microsoft.AspNetCore.Razor.Hosting.RazorLanguageVersionAttribute("3.0")]
 [assembly: Microsoft.AspNetCore.Razor.Hosting.RazorConfigurationNameAttribute("MVC-3.0")]
-[assembly: Microsoft.AspNetCore.Razor.Hosting.RazorExtensionAssemblyNameAttribute("MVC-3.0", "Microsoft.AspNetCore.Mvc.Razor.Extensions")]
+[assembly: Microsoft.AspNetCore.Razor.Hosting.RazorExtensionAssemblyNameAttribute("MVC-3.0", "Microsoft.CodeAnalysis.Razor.Compiler")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

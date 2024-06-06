@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
 
     /// <summary>
@@ -749,6 +749,16 @@ namespace SoEasyPlatform
         /// <param name="encoding">字符编码</param>
         public static string FileToString(string filePath, Encoding encoding)
         {
+            //ForLinux
+            if (IsLinuxRunTime())
+            {
+                // 查找文件目录下，不区分大小写匹配的文件
+                var realFilePath = Directory.GetFiles(Path.GetDirectoryName(filePath), "*", SearchOption.TopDirectoryOnly)
+                    .FirstOrDefault(f => f.Equals(filePath, StringComparison.OrdinalIgnoreCase));
+                if (!string.IsNullOrWhiteSpace(realFilePath))
+                    filePath = realFilePath;
+            }
+
             //创建流读取器
             StreamReader reader = new StreamReader(filePath, encoding);
             try
@@ -937,7 +947,7 @@ namespace SoEasyPlatform
                 urls = urls.Where(it => it != null).ToArray();
                 return urls[0];
             }
-            else 
+            else
             {
                 urls = urls.Where(it => it != null).ToArray();
             }

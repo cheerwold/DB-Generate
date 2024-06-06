@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+
+using SoEasyPlatform.Code;
+
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SoEasyPlatform 
+namespace SoEasyPlatform
 {
     public class Configures
     {
@@ -17,7 +21,8 @@ namespace SoEasyPlatform
                 app.UseDeveloperExceptionPage();
             }
 
-
+            var wwwrootDirs = Directory.GetDirectories(env.WebRootPath).Select(dir => Path.GetFileName(dir));
+            app.UseMiddleware<LowercaseUrlMiddleware>(wwwrootDirs,env);
             app.UseStaticFiles();
 
             app.UseRouting();
